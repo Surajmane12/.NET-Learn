@@ -1,0 +1,57 @@
+﻿
+@{
+
+	ViewData["Title"] = "Index";
+}
+@model IEnumerable<WebApplication2.Models.User>;
+
+<div>
+	<div class="card box-shadow-2 ">
+		<p id="successMsg">
+			@TempData["successMsg"]
+			</p>
+		
+		<h2>Welcome to DashBoard!!</h2>
+		<table class="table-bordered">
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Password</th>
+				<th>Actions</th>
+			</tr>
+			@foreach(var user in Model) {
+				<tr>
+					<td>@user.Id</td>
+					<td>@user.Name</td>
+					<td>@user.Email</td>
+					<td>@user.Password</td>
+					<td>
+						<a asp-controller="DashBoard"
+						   asp-action="Edit"
+						   asp-route-id="@user.Id"
+						   class="btn btn-primary">
+							Edit
+						</a>
+
+						@* So If we want to request but not using <a/> tag we can do with form and provide action there and method *@
+						<form asp-action="DeleteUser" method="post" style="display:inline;">
+							<input type="hidden" name="id" value="@user.Id" />
+
+							<button type="submit" class="btn btn-danger">
+								Delete
+							</button>
+						</form>
+					</td>
+				</tr>
+			}
+		</table>
+		@ViewBag.ErrorMessage
+	</div>
+</div>
+
+<script>
+	setTimeout(
+		function() {document.getElementById("successMsg").style.display="none";}
+		,2000);
+</script>

@@ -1,0 +1,63 @@
+﻿@using WebApplication2.DTO
+
+@model AddProductDTO;
+
+<div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="addProductModalLabel">
+                    Add Product
+                </h5>
+
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close">
+                </button>
+            </div>
+
+            @ViewBag.ErrorMsg
+
+            <div class="modal-body">
+
+                <form asp-action="Create">
+
+                    <div class="mb-3">
+                        <label class="form-label">Name</label>
+                        <input type="text"
+                              
+                               class="form-control" 
+                               asp-for="Name"/>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Description</label>
+                        <input type="text"
+                              
+                               class="form-control" 
+                               asp-for="Description"/>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Price</label>
+                        <input type="number"
+                              
+                               class="form-control" 
+                               asp-for="Price"/>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        Add Product
+                    </button>
+
+                  
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>

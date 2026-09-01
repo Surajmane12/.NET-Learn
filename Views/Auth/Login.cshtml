@@ -1,0 +1,19 @@
+﻿@using WebApplication2.DTO
+
+@{
+	ViewData["Title"] = "Login";
+}
+@model LoginUserDTO;
+
+<div><h2>Auth Page</h2></div>
+@ViewBag.SuccessMessage;
+
+<form class="d-flex justify-content-center flex-column align-items-center w-100">
+	<div class="card p-3 m-3 d-flex justify-content-center flex-column align-items-center w-100">
+		<input class="px-3 py-2 w-50 mb-3" type="email" placeholder="Email" asp-for="Email"/>
+		<input class="px-3 py-2 w-50 mb-3" type="password" placeholder="Password" asp-for="Password"/>
+		<button class="btn btn-primary w-25" asp-action="UserLogin">Submit</button>
+		@ViewBag.ErrorMessage
+	</div>
+	<a asp-action="Register">Don't have account? Register</a>
+</form>

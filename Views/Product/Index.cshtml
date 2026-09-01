@@ -1,0 +1,68 @@
+﻿@using WebApplication2.DTO
+
+@model IEnumerable<Product>;
+
+
+<div>
+	<h3>Product Page</h3>
+
+	<div class="card">
+		<div class="h-auto">
+			<div class="d-flex justify-content-between m-3 flex-row">
+				<h5>Details</h5>
+				<div>
+					<button class="btn btn-primary" data-bs-toggle="modal"
+					data-bs-target="#addProductModal">
+					+ Add Product
+				</button>
+				</div>
+
+			</div>
+
+			@if (TempData["ErrorMsg"] != null)
+			{
+				<div class="alert alert-danger">
+					@TempData["ErrorMsg"]
+				</div>
+			}
+			@if (TempData["SuccessMsg"] != null)
+			{
+				<div class="alert alert-success">
+					@TempData["SuccessMsg"]
+				</div>
+			}
+
+			<div class="d-flex justify-content-center w-100 mt-2">
+				
+				<div class="w-100 mx-3">
+					<table class="table table-striped">
+						<tr>
+							<th>Id</th>
+							<th>Name</th>
+							<th>Description</th>
+							<th>Price</th>
+						</tr>
+						@{
+							foreach(var item in Model)
+							{
+								<tr>
+								 <td>@item.Id</td>
+								<td>@item.Name</td>
+								<td>@item.Description</td>
+								<td>@item.Price</td>
+								</tr>
+							}
+						}
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+@await Html.PartialAsync("_AddProductModal", new AddProductDTO());
+
+
+					
+
+		
