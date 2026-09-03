@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Login";
+}
+@using Portfolio_Management_Application.DTO
+
+@model LoginUserDTO
+
+<div class="container">
+    <div class="row justify-content-center align-items-center" style="min-height:85vh;">
+        <div class="col-md-5">
+
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-body p-5">
+
+                    <div class="text-center mb-4">
+                        <h2 class="fw-bold">Welcome Back</h2>
+                        <p class="text-muted">
+                            Portfolio Management System
+                        </p>
+                    </div>
+
+                    @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+                    {
+                        <div class="mb-3">
+
+                            @Html.LabelFor(m => m.Email, new { @class = "form-label" })
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", type = "email", placeholder = "Enter your Email" })
+
+                            @Html.LabelFor(m => m.Password, new { @class = "form-label" })
+                            @Html.TextBoxFor(m => m.Password, new { @class = "form-control", type = "password", placeholder = "Enter your Password" })
+
+                        </div>
+
+                        <button class="btn btn-primary" type="submit">Login</button>
+                    }
+                    <p class="text-center">@ViewBag.ErrorMsg</p>
+                    <hr class="my-4" />
+
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+# SQL Server LocalDB
+*.mdf
+*.ldf
+
+# Visual Studio
+.vs/
+bin/
+obj/

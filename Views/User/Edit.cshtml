@@ -1,0 +1,55 @@
+﻿
+@model Portfolio_Management_Application.DTO.UpdateUserDTO
+
+@using (Html.BeginForm("Update","User",FormMethod.Post))  {
+    <div class="mb-3">
+
+        @Html.HiddenFor(u=>u.Id)
+        <label for="name" class="form-label">Name</label>
+    @Html.TextBoxFor(u => u.Name, new {@class="form-control"
+})
+    </div>
+
+    <div class="mb-3">
+        @*<label for="email" class="form-label">Email</label>*@
+        @Html.LabelFor(u=>u.Email, new{@class="form-label"})
+        @Html.TextBoxFor(u => u.Email, new { @class = "form-control",@type="email",@Required=true })
+    </div>
+
+    <div class="mb-3">
+        @*<label for="password" class="form-label">Password</label>*@
+        @Html.LabelFor(u => u.Password, new { @class = "form-label" })
+        @Html.TextBoxFor(u => u.Password, new { @class = "form-control", @type = "password", @Required = true })
+
+    </div>
+
+    <div class="mb-3">
+        @*<label for="designation" class="form-label">Designation</label>*@
+        @Html.LabelFor(u => u.Desgination, new { @class = "form-label" })
+        @Html.TextBoxFor(u => u.Desgination, new { @class = "form-control", @type = "text", @Required = true })
+
+    </div>
+
+    <div class="mb-3">
+        @*<label for="role" class="form-label">Role</label>*@
+        @Html.LabelFor(u => u.roleId, new { @class = "form-label" })
+        <select class="form-select" id="role" name="RoleId">
+            @*<option selected disabled>Select Role</option>*@
+            @if (ViewBag.Roles != null)
+            {
+
+                foreach (var item in ViewBag.Roles)
+                {
+                    <option value="@item.Id" @(item.Id == Model.roleId ? "selected" : "")>@item.Name</option>
+                }
+            }
+        </select>
+    </div>
+
+   
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+    <button type="reset" class="btn btn-secondary">
+        Reset
+    </button>
+}

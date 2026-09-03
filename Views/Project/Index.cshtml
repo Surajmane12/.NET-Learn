@@ -1,0 +1,113 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+@model IEnumerable<Portfolio_Management_Application.DTO.GetProjectDTO>
+
+<div>
+    <h3>Projects Data</h3>
+    <br />
+</div>
+<div>
+    <input class="form-control"  placeholder="Search By Name" id="search-bar"
+           onkeyup="SearchFilter()"/>
+</div>
+<div class="d-flex justify-content-end">
+    @Html.ActionLink("+ Add Project", "Create", "Project", new { @class = "btn btn-success btn-md p-2" })
+</div>
+
+<div class="container mt-4">
+
+    <div class="table-responsive">
+
+        <table class="project-table table table-bordered table-hover align-middle">
+
+            <thead class="table-dark">
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Cost</th>
+                    <th>Technology</th>
+                    <th>Developer</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>
+                            <img src="@item.ImageUrl"
+                                 alt="Project Image"
+                                 style="width: 100px; height: 70px; object-fit: cover;"
+                                 class="rounded" />
+                        </td>
+
+                        <td class="project-name">
+                            @item.Name
+                        </td>
+
+                        <td>
+                            @item.Description
+                        </td>
+
+                        <td>
+                            @item.Cost
+                        </td>
+
+                        <td>
+                            @item.Technology
+                        </td>
+
+                        <td>
+                            @item.User.Name
+                        </td>
+
+                        <td>
+                            @Html.ActionLink("View Details", "Details", "Project",
+                                new { Id = item.Id },
+                                new { @class = "btn btn-success btn-sm mb-1" })
+
+                            @Html.ActionLink("Edit", "Edit", "Project",
+                                new { Id = item.Id },
+                                new { @class = "btn btn-warning btn-sm mb-1" })
+
+                            @Html.ActionLink("Delete", "DeleteProject", "Project",
+                                new { Id = item.Id },
+                                new { @class = "btn btn-danger btn-sm mb-1" })
+                        </td>
+
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<script>
+    function SearchFilter() {
+        var searchValue = document.getElementById("search-bar").value.toLowerCase();
+        var rows = document.querySelectorAll(".project-table tbody tr");
+
+        rows.forEach(function (row) {
+            var projName = row.querySelector(".project-name").textContent.toLowerCase();
+            if (projName.includes(searchValue)) {
+                row.style.display = "";
+            }
+            else {
+                row.style.display = "none";
+            }
+
+        });
+    }
+    
+
+</script>

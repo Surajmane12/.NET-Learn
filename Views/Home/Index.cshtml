@@ -1,0 +1,95 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+
+<div class="container">
+
+    <!-- Hero Section -->
+    <div class="row align-items-center py-5">
+
+        <div class="col-md-7">
+            <h1 class="display-4 fw-bold">
+                Portfolio Management System
+            </h1>
+
+            <p class="lead text-muted mt-3">
+                Manage your professional portfolio, projects, skills,
+                and experience from one simple platform.
+            </p>
+
+            <div class="mt-4">
+                @Html.ActionLink("View Project", "Index","Login",null,
+               new {
+               @class="btn btn-primary"
+           })
+            </div>
+        </div>
+
+        <div class="col-md-5 text-center">
+            <div class="card shadow-sm p-4">
+                <h2 class="mb-3">Welcome 👋</h2>
+
+                <p class="text-muted mb-0">
+                    Build, manage and showcase your professional
+                    portfolio with ease.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Features Section -->
+    <div class="row text-center py-5">
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm p-4">
+                <h4>Projects</h4>
+
+                <p class="text-muted">
+                    Add and manage your projects with descriptions,
+                    GitHub links and live demos.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm p-4">
+                <h4>Skills</h4>
+
+                <p class="text-muted">
+                    Showcase your technical skills and
+                    professional expertise.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm p-4">
+                <h4>Experience</h4>
+
+                <p class="text-muted">
+                    Maintain your professional experience,
+                    education and career information.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Call To Action -->
+    <div class="text-center bg-light rounded p-5 mb-5">
+        <h3>Manage Your Portfolio</h3>
+
+        <p class="text-muted">
+            Keep your professional profile up to date
+            and showcase your work.
+        </p>
+
+        <button class="btn btn-primary">
+            Get Started
+        </button>
+    </div>
+
+</div>

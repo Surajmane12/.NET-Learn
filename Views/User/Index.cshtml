@@ -1,0 +1,126 @@
+﻿@{
+    ViewBag.Title = "Users";
+}
+
+@using Portfolio_Management_Application.DTO
+@model IEnumerable<UserDTO>
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="fw-bold mb-1">Users</h2>
+            <p class="text-muted mb-0">Manage registered users</p>
+        </div>
+
+
+        @Html.ActionLink("+Add User", "Create", "User", new
+        {
+            @class = "btn btn-primary btn-sm",
+            @data_bs_toggle = "modal",
+          @data_bs_target = "#addUserModal"
+         })
+
+        
+        <span class="badge bg-primary fs-6">
+            Total: @Model.Count()
+        </span>
+    </div>
+    <p class="bg-gradient">@TempData["SuccessMsg"]</p>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-body p-0">
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+
+                    <thead class="table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Designation</th>
+                            <th>Role</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @{
+                            int count = 1;
+                        }
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@count</td>
+                                <td class="fw-semibold">@item.Name</td>
+                                <td>@item.Email</td>
+                                <td>@item.Desgination</td>
+
+                                <td>
+                                    @if (item.Role == "Admin")
+                                    {
+                                        <span class="badge bg-danger">
+                                            Admin
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">
+                                            @item.Role
+                                        </span>
+                                    }
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Delete", "Delete", "User", new { Id = item.Id },
+                                   new
+                               {
+                                   @class = "btn btn-danger btn-sm"
+                               })
+
+                               
+
+                                @Html.ActionLink("Edit", "Edit", "User",new {Id=item.Id}, new
+                           {
+                               @class = "btn btn-primary btn-sm"
+                           })
+                                </td>
+
+                            </tr>
+
+                            count++;
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+@{
+    var createUserDTO = new CreateUserDTO();
+    if (ViewBag.OpenModal == true)
+    {
+        createUserDTO = ViewBag.CreateUserDTO as CreateUserDTO ?? new CreateUserDTO();
+    }
+    Html.RenderPartial("_CreateUserModal", createUserDTO);
+
+}
+
+
+  @if (@ViewBag.OpenModal== true) {
+
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var modal = new bootstrap.Modal(
+                document.getElementById("addUserModal")
+            )
+            modal.show();
+        });
+</script>
+
+}

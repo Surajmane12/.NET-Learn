@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+<main aria-labelledby="title">
+    <h2 id="title">@ViewBag.Title.</h2>
+    <h3>@ViewBag.Message</h3>
+
+    <p>Use this area to provide additional information.</p>
+
+    <p id="SuccessAlert">@TempData["SucessMsg"]</p>
+
+    <p>Current Role:@User.IsInRole("Admin"); </p>
+</main>
+
+<script>
+
+    setTimeout(() => {
+        const alert = document.getElementById("SuccessAlert");
+
+        if (alert) {
+            alert.style.display = "none";
+        }
+    }, 2000);
+</script>

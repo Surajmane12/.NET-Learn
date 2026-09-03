@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@model Portfolio_Management_Application.DTO.EditProjectDTO
+
+@using (Html.BeginForm("EditProject", "Project", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.Id)
+
+    if (ViewBag.ErrorMsg != null)
+    {
+        <div class="mb-1 bg-info" id="alert-msg">@ViewBag.ErrorMsg</div>
+    }
+
+    <div class="mb-2">
+        @Html.LabelFor(u => u.Name, labelText: "Name")
+        @Html.TextBoxFor(u => u.Name, new { @class = "form-control", @type = "text" })
+    </div>
+    <div class="mb-2">
+        @Html.LabelFor(u => u.Description, labelText: "Description")
+        @Html.TextBoxFor(u => u.Description, new { @class = "form-control", @type = "text" })
+    </div>
+    <div class="mb-2">
+        @Html.LabelFor(u => u.Technology, labelText: "Technology")
+        @Html.TextBoxFor(u => u.Technology, new { @class = "form-control", @type = "text" })
+    </div>
+    <div class="mb-2">
+        @Html.LabelFor(u => u.Cost, labelText: "Cost")
+        @Html.TextBoxFor(u => u.Cost, new { @class = "form-control", @type = "number" })
+    </div>
+
+    <div class="mb-2">
+        @Html.LabelFor(u => u.LiveUrl, labelText: "LiveUrl")
+        @Html.TextBoxFor(u => u.LiveUrl, new { @class = "form-control", @type = "link" })
+    </div>
+    <div class="mb-2">
+        @Html.LabelFor(u => u.GithubUrl, labelText: "GithubUrl")
+        @Html.TextBoxFor(u => u.GithubUrl, new { @class = "form-control", @type = "link" })
+    </div>
+    <div class="mb-2">
+        @Html.LabelFor(u => u.ImageUrl, labelText: "ImageUrl")
+        @Html.TextBoxFor(u => u.ImageUrl, new { @class = "form-control", @type = "link" })
+    </div>
+
+    <div class="mb-3">
+        @Html.LabelFor(u => u.userId, labelText: "User")
+
+        <select class="form-select" name="userId" multiple>
+            @if (ViewBag.Users != null)
+            {
+                foreach (var item in ViewBag.Users)
+                {
+                    <option value=@item.Id @(item.Id == Model.userId ? "selected" : "")>@item.Name</option>
+                }
+            }
+            else
+            {
+                <option value="" disabled>No User Found</option>
+            }
+        </select>
+    </div>
+    <div class="">
+        <button class="btn btn-primary btn-sm" type="submit">Create</button>
+    </div>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var alert = document.getElementById("alert-msg");
+
+            if (alert) {
+                setTimeout(() => {
+                    alert.style.display = "none";
+                }, 2000);
+            }
+
+        })
+
+    </script>
+
+}
